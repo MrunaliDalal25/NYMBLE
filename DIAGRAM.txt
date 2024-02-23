@@ -1,0 +1,134 @@
+HIGH LEVEL DIAGRAM
+  +------------------------------------+
+  |            TravelPackage           |
+  +------------------------------------+
+  | - name: String                     |
+  | - passengerCapacity: int           |
+  | - itinerary: List<Destination>     |
+  | - passengers: List<Passenger>      |
+  +------------------------------------+
+  | + TravelPackage(name: String,      |
+  |     passengerCapacity: int)        |
+  | + addDestination(destination:     |
+  |     Destination): void             |
+  | + addPassenger(passenger:          |
+  |     Passenger): void               |
+  | + bookActivityForPassenger(        |
+  |     passenger: Passenger,          |
+  |     activity: Activity): void      |
+  | + printItinerary(): void           |
+  | + printPassengerList(): void       |
+  | + printPassengerDetails(passenger: |
+  |     Passenger): void               |
+  +------------------------------------+
+
+        |                       ^
+        |                       |
+        | uses                  |
+        |                       |
+        V                       |
+        
++-----------------+     +-------------------+     +-------------------+
+|   Destination   |     |     Passenger     |     |      Activity     |
++-----------------+     +-------------------+     +-------------------+
+| - name: String  |     | - name: String    |     | - name: String    |
+| - activities:   |     | - passengerNumber:|     | - description:   |
+|     List<Activity> |     |     int          |     |     String        |
++-----------------+     | - balance: double |     | - cost: double    |
+| + Destination(name: |  | - bookedActivities:|   | - capacity: int   |
+|     String)     |     |     List<Activity> |     +-------------------+
+| + addActivity(activity:|+ Passenger(name:  |
+|     Activity): void   |     String,       |
+| + getActivities():     |     int,          |
+|     List<Activity>     |     PassengerType):|
+|                       |     void           |
++-----------------------+ +-------------------+
+
+
+LOW LEVEL DIAGRAM
+
++---------------------------------+
+|          TravelPackage          |
++---------------------------------+
+| - name: String                  |
+| - passengerCapacity: int        |
+| - itinerary: List<Destination>  |
+| - passengers: List<Passenger>   |
++---------------------------------+
+| + addDestination(destination:  |
+|     Destination): void          |
+| + addPassenger(passenger:       |
+|     Passenger): void            |
+| + bookActivityForPassenger(     |
+|     passenger: Passenger,       |
+|     activity: Activity): void   |
+| + printItinerary(): void        |
+| + printPassengerList(): void    |
+| + printPassengerDetails(passenger:|
+|     Passenger): void            |
++---------------------------------+
+
++-------------------------------+
+|         Destination           |
++-------------------------------+
+| - name: String                |
+| - activities: List<Activity>  |
++-------------------------------+
+| + Destination(name: String)  |
+| + addActivity(activity:       |
+|     Activity): void           |
+| + getActivities():            |
+|     List<Activity>            |
++-------------------------------+
+
++-------------------------------+
+|          Passenger            |
++-------------------------------+
+| - name: String                |
+| - passengerNumber: int        |
+| - balance: double             |
+| - bookedActivities:           |
+|     List<Activity>            |
++-------------------------------+
+| + Passenger(name: String,     |
+|     passengerNumber: int,     |
+|     balance: double): void    |
+| + deductBalance(amount:       |
+|     double): boolean          |
+| + bookActivity(activity:      |
+|     Activity): void           |
+| + getName(): String           |
+| + getPassengerNumber(): int   |
+| + getBalance(): double        |
+| + setBalance(balance: double):|
+|     void                      |
+| + getBookedActivities():      |
+|     List<Activity>            |
++-------------------------------+
+
++-------------------------------+
+|           Activity            |
++-------------------------------+
+| - name: String                |
+| - description: String         |
+| - cost: double                |
+| - capacity: int               |
+| - destination: Destination   |
+| - bookedPassengers:           |
+|     List<Passenger>           |
++-------------------------------+
+| + Activity(name: String,      |
+|     description: String,      |
+|     cost: double,             |
+|     capacity: int,            |
+|     destination: Destination)|
+| + getCost(): double           |
+| + getCapacity(): int          |
+| + getDescription(): String   |
+| + getName(): String           |
+| + getDestination():          |
+|     Destination               |
+| + hasSpace(): boolean         |
+| + bookPassenger(passenger:    |
+|     Passenger): void          |
++-------------------------------+
